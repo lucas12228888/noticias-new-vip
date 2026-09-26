@@ -26,6 +26,11 @@ def get_access_token():
         },
         timeout=30,
     )
+    
+    if response.status_code != 200:
+        print(f"OAuth Error: {response.status_code}")
+        print(f"Response: {response.text}")
+    
     response.raise_for_status()
     return response.json()["access_token"]
 
